@@ -2,6 +2,8 @@
 #include <stdlib.h>
 #include <string.h>
 #include <math.h>
+#include <signal.h>
+#include <dirent.h>
 
 #include "ml6.h"
 #include "display.h"
@@ -10,7 +12,14 @@
 #include "parser.h"
 #include "stack.h"
 
+void sighandler() {
+    printf("Unable to execute command: you likely specified a file that does not exist.\nExiting now.\n");
+    exit(0);
+}
+
 int main(int argc, char **argv) {
+
+  signal(SIGSEGV, sighandler);
 
   screen s;
   struct matrix * edges;
@@ -20,7 +29,8 @@ int main(int argc, char **argv) {
   edges = new_matrix(4, 4);
   polygons = new_matrix(4, 4);
   csystems = new_stack();
-  if ( argc == 2 )
+
+  if (argc == 2)
     parse_file( argv[1], csystems, edges, polygons, s );
   else
     parse_file( "stdin", csystems, edges, polygons, s );

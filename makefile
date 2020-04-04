@@ -3,14 +3,19 @@ CFLAGS= -Wall
 LDFLAGS= -lm
 CC= gcc
 
+NUMBERS = 0 1 2 3 4 5 6 7
+
 run: all
-	./main script
+	rm *.o
+	$(foreach var,$(NUMBERS),./main scripts/0$(var).script;)
+	rm pics/*.ppm
+	convert -delay 20 -loop 0 pics/*.png pics.gif
 
 all: $(OBJECTS)
 	$(CC) -o main $(OBJECTS) $(LDFLAGS)
 
 main.o: main.c display.h draw.h ml6.h matrix.h parser.h stack.h
-	$(CC) -c main.c
+	$(CC) -g -c main.c
 
 draw.o: draw.c draw.h display.h ml6.h matrix.h gmath.h
 	$(CC) $(CFLAGS) -c draw.c

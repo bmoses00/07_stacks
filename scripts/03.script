@@ -1,0 +1,85 @@
+#creating torso and face
+push
+move
+125 190 0
+rotate
+x 10
+rotate
+y -10
+box
+-20 0 25 45 75 50
+push
+move
+0 20 0
+#creating face
+sphere
+0 0 5 20
+pop
+#creating left upper and lower arm, hand
+push
+move
+0 -10 25
+rotate
+z 20
+box
+-7 0 10 15 40 10
+push
+move
+0 -40 0
+rotate
+z 5
+box
+-7 5 0 15 30 10
+push
+move
+0 -30 0
+sphere
+0 3 0 7
+pop
+pop
+pop
+#creating closer upper and lower leg, and foot
+push
+move
+-10 -70 17
+rotate
+z -15
+box
+0 0 -7 15 40 15
+push
+move
+0 -30 0
+rotate
+z 0
+box
+1 4 -7 15 25 15
+push
+move
+0 -25 0
+torus
+16 0 0 4 12
+pop
+pop
+pop
+#creating farther upper and lower leg, and foot
+push
+move
+0 -82 -17
+rotate
+z 40
+box
+0 0 -7 15 28 15
+push
+move
+0 -18 0
+rotate
+z -70
+box
+0 5 -7 15 25 15
+push
+move
+0 -25 0
+torus
+16 5 0 4 12
+save
+03.png
